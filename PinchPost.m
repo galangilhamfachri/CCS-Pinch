@@ -6,6 +6,10 @@ fprintf('Time Difference\tCapturable CO2\tAlt Storage\tUnutilized Storage\tPinch
 fprintf('--------\t-----------\t-----------\t-------------------\t----------\n');
 figure;
 hold on;
+xlabel('Cumulative CO₂ Load (Mt)')
+ylabel('Year')
+title('Cascade Table Comparison with Time Differences')
+grid on;
 for time_difference_scalar = startyear:increment:endyear
 % Source Data (in Mt/y)
 source_flowrate = [15, 5, 5, 20, 10]; % CO2 flowrate from sources in Mt/y
@@ -82,10 +86,6 @@ unutilized_storage=sink_load(num_year)-source_load(num_year);
 yearsink=year-time_difference_scalar;
 capturable=source_load(end)-alternative_storage;
 plot(sink_load(2:end), yearsink(2:end), '-o')
-xlabel('Cumulative CO₂ Load (Mt)')
-ylabel('Year')
-title('Cascade Table Comparison with Time Differences')
-grid on
 fprintf('%3d\t\t%10.2f\t%10.2f\t%20.2f\t%10d\n', time_difference_scalar, capturable, alternative_storage, unutilized_storage, pinch);
 end
 plot(source_load, year, '-x')
